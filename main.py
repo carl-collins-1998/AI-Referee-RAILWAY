@@ -341,7 +341,11 @@ async def score_video(video_file: UploadFile = File(...)) -> Dict[str, Any]:
                 "total_frames": total_frames
             }
         }
-
+@app.get("/file_check")
+async def file_check():
+    with open(__file__, 'r') as f:
+        first_lines = f.readlines()[:30]
+    return {"first_30_lines": first_lines}
 
 if __name__ == "__main__":
     import uvicorn
